@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             splashScreen.style.display = 'none';
             mainMenu.style.display = 'flex';
-        }, 4000); // Splash screen duration
+        }, 2000); // Splash screen duration
     }
 
     /**
@@ -246,3 +246,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initGame();
 
 });
+
