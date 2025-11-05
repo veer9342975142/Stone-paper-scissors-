@@ -38,10 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. Game Flow Functions ---
 
-    /**
+        /**
      * Starts the game, shows splash for 4s, then main menu.
      */
     function initGame() {
+        // --- UPGRADE: Set Initial State ---
+        // 1. Ensure only the splash screen is visible at the start.
+        mainMenu.style.display = 'none';
+        choicePhase.style.display = 'none';
+        spinPhase.style.display = 'none';
+        resultsScreen.style.display = 'none';
+        splashScreen.style.display = 'flex'; // Ensure splash is visible
+
+        // --- Original Timer Logic ---
+
+
         setTimeout(() => {
             splashScreen.style.display = 'none';
             mainMenu.style.display = 'flex';
@@ -233,4 +244,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 5. Start Game ---
     initGame();
+
 });
