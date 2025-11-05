@@ -1,0 +1,224 @@
+/* Global setup */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevents scrollbars */
+    color: white;
+}
+
+/* Base screen class */
+.screen {
+    width: 100%;
+    height: 100vh;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 1. Splash Screen */
+#splash-screen {
+    display: flex; /* Initially visible */
+    background: black;
+    color: white;
+    font-size: 1.5em;
+    line-height: 1.6;
+}
+
+/* 2. Main Menu */
+#main-menu {
+    background: black;
+}
+
+#main-menu h1 {
+    margin-bottom: 40px;
+}
+
+.note {
+    color: white;
+    margin-top: 20px;
+}
+
+/* Common Button Style */
+.btn {
+    background: linear-gradient(to right, #FFD700, #00529B); /* Golden to Blue */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* 3. Player Choice Phase */
+#choice-phase {
+    background: green;
+}
+
+.cards-container {
+    display: flex;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.card {
+    background: black;
+    color: white;
+    width: 150px;
+    height: 200px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 3px solid white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: popUp 0.5s ease-out forwards;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px yellow;
+}
+
+.card i {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+.card span {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* "POPUP" animation */
+@keyframes popUp {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+
+/* 4. Computer Spin Phase */
+#spin-phase {
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8);
+    background-size: 400% 400%;
+    animation: ripple 10s ease infinite;
+}
+
+@keyframes ripple {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#player-choice-display {
+    font-size: 1.5em;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.wheel-container {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.pin {
+    position: absolute;
+    top: -10px; /* Just outside the wheel border */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 30px solid #f0c40f; /* Yellow */
+    z-index: 20;
+}
+
+.wheel {
+    width: 400px; 
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #800080 50%, #4b0082 100%);
+    position: relative;
+    border: 10px solid #eee;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    overflow: hidden; /* Hide overflowing parts of lines */
+}
+
+.wheel-center {
+    position: absolute;
+    width: 80px; 
+    height: 80px;
+    background: yellow;
+    border-radius: 50%;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    border: 5px solid white;
+}
+
+.wheel-spinner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* This transition is key. It spins for 6s with a nice easing. */
+    transition: transform 6s cubic-bezier(0.2, 0.8, 0.4, 1);
+}
+
+.line {
+    position: absolute;
+    width: 2px;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    top: 0; 
+    left: 50%;
+    transform-origin: bottom center;
+    /* CSS variable --i is set in HTML (0-17) */
+    transform: translateX(-1px) rotate(calc(var(--i) * 20deg + 10deg)); /* 10deg offset to be BETWEEN icons */
+}
+
+.slot {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    /* Move to slot position: 1. Rotate, 2. Translate out from center */
+    transform: rotate(calc(var(--i) * 20deg)) translate(0px, -150px); /* 150px radius */
+}
+
+.slot i {
+    color: white;
+    font-size: 24px;
+    /* Rotate icon to point outwards */
+    transform: rotate(90deg);
+}
+
+/* 5. Results Screen */
+#results-screen {
+    background: black;
+}
+
+#result-message {
+    font-size: 1.5em;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 40px;
+}

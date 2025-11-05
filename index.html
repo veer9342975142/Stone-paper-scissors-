@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stone Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="screen" id="splash-screen">
+        <p>Project by</p>
+        <p>-Adarsh Rai</p>
+        <p>-Abhishek.B.V</p>
+        <p>-Ashwin.J.K</p>
+        <p>'CSE-A_FIRST YEARS'</p>
+    </div>
+
+    <div class="screen" id="main-menu">
+        <h1>STONE PAPERS SCISSORS GAME</h1>
+        <button class="btn" id="start-btn">START</button>
+        <p class="note">'After pressing the start button, you have 5 seconds to choose a card...'</p>
+    </div>
+
+    <div class="screen" id="choice-phase">
+        <h2>Choose your element!</h2>
+        <div class="cards-container">
+            <div class="card" data-choice="rock">
+                <i class="fas fa-hand-rock"></i>
+                <span>Stone</span>
+            </div>
+            <div class="card" data-choice="paper">
+                <i class="fas fa-file-alt"></i>
+                <span>Paper</span>
+            </div>
+            <div class="card" data-choice="scissors">
+                <i class="fas fa-cut"></i>
+                <span>Scissors</span>
+            </div>
+        </div>
+        <p>Time remaining: <span id="timer">5</span>s</p>
+    </div>
+
+    <div class="screen" id="spin-phase">
+        <h2 id="player-choice-display">You chose...</h2>
+        
+        <div class="wheel-container">
+            <div class="pin"></div>
+            <div class="wheel">
+                <div class="wheel-center"></div>
+                <div class="wheel-spinner" id="wheel-spinner">
+                    <div class="line" style="--i: 0;"></div>
+                    <div class="slot" style="--i: 0;"><i class="fas fa-hand-rock"></i></div>
+                    <div class="line" style="--i: 1;"></div>
+                    <div class="slot" style="--i: 1;"><i class="fas fa-file-alt"></i></div>
+                    <div class="line" style="--i: 2;"></div>
+                    <div class="slot" style="--i: 2;"><i class="fas fa-cut"></i></div>
+                    <div class="line" style="--i: 3;"></div>
+                    <div class="slot" style="--i: 3;"><i class="fas fa-hand-rock"></i></div>
+                    <div class="line" style="--i: 4;"></div>
+                    <div class="slot" style="--i: 4;"><i class="fas fa-file-alt"></i></div>
+                    <div class="line" style="--i: 5;"></div>
+                    <div class="slot" style="--i: 5;"><i class="fas fa-cut"></i></div>
+                    <div class="line" style="--i: 6;"></div>
+                    <div class="slot" style="--i: 6;"><i class="fas fa-hand-rock"></i></div>
+                    <div class="line" style="--i: 7;"></div>
+                    <div class="slot" style="--i: 7;"><i class="fas fa-file-alt"></i></div>
+                    <div class="line" style="--i: 8;"></div>
+                    <div class="slot" style="--i: 8;"><i class="fas fa-cut"></i></div>
+                    <div class="line" style="--i: 9;"></div>
+                    <div class="slot" style="--i: 9;"><i class="fas fa-hand-rock"></i></div>
+                    <div class="line" style="--i: 10;"></div>
+                    <div class="slot" style="--i: 10;"><i class="fas fa-file-alt"></i></div>
+                    <div class="line" style="--i: 11;"></div>
+                    <div class="slot" style="--i: 11;"><i class="fas fa-cut"></i></div>
+                    <div class="line" style="--i: 12;"></div>
+                    <div class="slot" style="--i: 12;"><i class="fas fa-hand-rock"></i></div>
+                    <div class="line" style="--i: 13;"></div>
+                    <div class="slot" style="--i: 13;"><i class="fas fa-file-alt"></i></div>
+                    <div class="line" style="--i: 14;"></div>
+                    <div class="slot" style="--i: 14;"><i class="fas fa-cut"></i></div>
+                    <div class="line" style="--i: 15;"></div>
+                    <div class="slot" style="--i: 15;"><i class="fas fa-hand-rock"></i></div>
+                    <div class="line" style="--i: 16;"></div>
+                    <div class="slot" style="--i: 16;"><i class="fas fa-file-alt"></i></div>
+                    <div class="line" style="--i: 17;"></div>
+                    <div class="slot" style="--i: 17;"><i class="fas fa-cut"></i></div>
+                </div>
+            </div>
+        </div>
+        
+        <h2>Spinning the Luck Wheel...</h2>
+    </div>
+
+    <div class="screen" id="results-screen">
+        <p id="result-message"></p>
+        <button class="btn" id="retry-btn">[TRY AGAIN]</button>
+    </div>
+
+    <script src="script.js"></script>
+<script>
+  // Register the service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('serviceworker.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
+  }
+</script>
+</body>
+</html>
