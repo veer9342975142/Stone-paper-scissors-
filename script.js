@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainMenu = document.getElementById('main-menu');
     const choicePhase = document.getElementById('choice-phase');
     const spinPhase = document.getElementById('spin-phase');
-    const resultsScreen = document.getElementById('results-screen')
-
+    const resultsScreen = document.getElementById('results-screen');
     const startBtn = document.getElementById('start-btn');
     const retryBtn = document.getElementById('retry-btn');
     const cards = document.querySelectorAll('.card');
