@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. Get DOM Elements ---
+// --- 1. Get DOM Elements ---
+    const splashScreen = document.getElementById('splash-screen');
+    const rotateScreen = document.getElementById('rotate-screen'); //
     const splashScreen = document.getElementById('splash-screen');
     const mainMenu = document.getElementById('main-menu');
     const choicePhase = document.getElementById('choice-phase');
