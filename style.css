@@ -112,6 +112,66 @@ body, html {
     100% { transform: scale(1); opacity: 1; }
 }
 
+/* --- New Rotation Splash Screen Styles --- */
+#rotate-screen {
+    background: #1a1a1a; /* Dark background */
+    color: white;
+    font-size: 1.2em;
+}
+
+.rotation-hint {
+    margin-bottom: 20px;
+    font-size: 5em;
+    color: #FFD700; /* Gold/Yellow */
+    position: relative;
+    display: block; /* Ensures the element behaves for the animation */
+}
+
+.rotate-icon {
+    /* Base style for the icon */
+    display: inline-block;
+    animation: rotatePhone 2s infinite ease-in-out;
+}
+
+.rotate-text {
+    margin: 20px;
+    padding: 0 10px;
+}
+
+/* Keyframe Animation to suggest rotation */
+@keyframes rotatePhone {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(90deg); }
+    50% { transform: rotate(90deg); } /* Pause for a moment */
+    75% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Media Query: Only show the rotate screen on portrait mobile view */
+@media (orientation: landscape) {
+    /* The rotate screen should be hidden when the device is already landscape */
+    #rotate-screen {
+        display: none !important;
+    }
+}
+/* Ensure cards are visible in landscape on choice-phase */
+@media (orientation: landscape) and (max-width: 900px) {
+    #choice-phase {
+        /* You might want to adjust card sizes or margins here if they are still too big */
+        padding: 5px;
+    }
+    .cards-container {
+        gap: 15px;
+        margin: 20px 0;
+    }
+    .card {
+        width: 120px; 
+        height: 160px;
+    }
+    .card i {
+        font-size: 3em;
+    }
+}
 
 /* 4. Computer Spin Phase */
 #spin-phase {
