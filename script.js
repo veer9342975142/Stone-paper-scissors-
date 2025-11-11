@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         choicePhase.style.display = 'none';
         spinPhase.style.display = 'none';
         resultsScreen.style.display = 'none';
+rotateScreen.style.display = 'none'; // Ensure new screen is hidden initially
+
         splashScreen.style.display = 'flex'; // Ensure splash is visible
 
         // --- Original Timer Logic ---
