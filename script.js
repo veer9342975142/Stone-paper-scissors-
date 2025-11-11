@@ -1,14 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. Get DOM Elements ---
-// --- 1. Get DOM Elements ---
     const splashScreen = document.getElementById('splash-screen');
-    const rotateScreen = document.getElementById('rotate-screen'); //
-    const splashScreen = document.getElementById('splash-screen');
+    const rotateScreen = document.getElementById('rotate-screen'); // New rotation screen
     const mainMenu = document.getElementById('main-menu');
     const choicePhase = document.getElementById('choice-phase');
     const spinPhase = document.getElementById('spin-phase');
-    const resultsScreen = document.getElementById('results-screen');
+    const resultsScreen = document.getElementById('results-screen')
 
     const startBtn = document.getElementById('start-btn');
     const retryBtn = document.getElementById('retry-btn');
@@ -39,34 +37,62 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     const wheelSlots = 18;
 
-    // --- 3. Game Flow Functions ---
+        // --- 3. Game Flow Functions ---
 
-        /**
-     * Starts the game, shows splash for 4s, then main menu.
+    /**
+     * Starts the game, shows splash for 2s, then checks orientation.
      */
     function initGame() {
-        // --- UPGRADE: Set Initial State ---
-        // 1. Ensure only the splash screen is visible at the start.
+        // 1. Set Initial State
         mainMenu.style.display = 'none';
         choicePhase.style.display = 'none';
         spinPhase.style.display = 'none';
         resultsScreen.style.display = 'none';
-rotateScreen.style.display = 'none'; // Ensure new screen is hidden initially
+        rotateScreen.style.display = 'none'; // Ensure new screen is hidden initially
+        splashScreen.style.display = 'flex'; 
 
-        splashScreen.style.display = 'flex'; // Ensure splash is visible
-
-        // --- Original Timer Logic ---
-
-
+        // 2. Show initial splash for 2s
         setTimeout(() => {
             splashScreen.style.display = 'none';
-            mainMenu.style.display = 'flex';
-        }, 2000); // Splash screen duration
+            // 3. Check orientation after initial splash
+            checkOrientation(); 
+        }, 2000); 
+
+        // 4. Add listener to check orientation whenever it changes
+        window.addEventListener('orientationchange', checkOrientation);
+        window.addEventListener('resize', checkOrientation); 
+    }
+
+    /**
+     * Checks if the screen is in portrait mode (on a narrow screen) 
+     * and shows the rotation hint if necessary.
+     */
+    function checkOrientation() {
+        // Check if device is likely a phone AND in portrait mode
+        const isMobilePortrait = window.matchMedia("(orientation: portrait) and (max-width: 900px)").matches;
+
+        if (isMobilePortrait) {
+            // Show rotate screen and hide main menu/game phases
+            mainMenu.style.display = 'none';
+            choicePhase.style.display = 'none'; 
+            spinPhase.style.display = 'none';
+            resultsScreen.style.display = 'none';
+            rotateScreen.style.display = 'flex';
+        } else {
+            // Screen is landscape or desktop/large screen
+            rotateScreen.style.display = 'none';
+            
+            // Only show main menu if no other game phase is active
+            if (choicePhase.style.display === 'none' && spinPhase.style.display === 'none' && resultsScreen.style.display === 'none') {
+                mainMenu.style.display = 'flex';
+            }
+        }
     }
 
     /**
      * Hides other screens, shows choice phase, and starts the 5s timer.
      */
+
     function startChoicePhase() {
         // Hide other screens
         mainMenu.style.display = 'none';
